@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { Chess } from "chess.js";
 import { initDiscordSdk } from "./discordSdk.js";
@@ -421,13 +422,21 @@ export default function ActivityPage() {
         </div>
       )}
 
-      <section className="hero-card">
-        <p className="eyebrow">Waguri Chess Lab</p>
-        <h1>Discord Chess Activity MVP</h1>
-        <p className="subtitle">
-          Click or drag a piece. Legal moves only — powered by chess.js.
-        </p>
-      </section>
+     <section className="hero-card">
+  <div className="hero-top">
+    <div>
+      <p className="eyebrow">Waguri Chess Lab</p>
+      <h1>Discord Chess Activity MVP</h1>
+      <p className="subtitle">
+        Click or drag a piece. Legal moves only — powered by chess.js.
+      </p>
+    </div>
+
+    <Link to="/" className="home-button">
+      Home
+    </Link>
+  </div>
+</section>
 
       <section className="layout">
         <div className="board-wrap">
