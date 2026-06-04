@@ -432,9 +432,9 @@ export default function ActivityPage() {
       </p>
     </div>
 
-    <Link to="/" className="home-button">
-      Home
-    </Link>
+  <Link to="/" className="home-button icon-home" aria-label="Go to home" title="Home">
+  🏠
+</Link>
   </div>
 </section>
 
