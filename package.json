@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "^2.5.0",
@@ -17,5 +18,9 @@
     "react-dom": "latest",
     "stockfish.wasm": "^0.10.0",
     "vite": "latest"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.40.0",
+    "wrangler": "^4.98.0"
   }
 }
