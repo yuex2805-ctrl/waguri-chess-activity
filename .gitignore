@@ -1,0 +1,45 @@
+# dependencies
+node_modules/
+*/node_modules/
+
+# build output
+dist/
+build/
+*/dist/
+*/build/
+
+# env files
+.env
+.env.local
+.env.*.local
+client/.env
+server/.env
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Vite
+.vite/
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# cache
+.cache/
+.parcel-cache/
+
+# temporary
+tmp/
+temp/

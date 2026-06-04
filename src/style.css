@@ -1,0 +1,408 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #3b3b3b;
+  color: #fdfdff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(233, 30, 99, 0.25), transparent 34rem),
+    linear-gradient(135deg, #14151a 0%, #101114 100%);
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 28px 0 40px;
+}
+
+.hero-card,
+.panel,
+.board-wrap {
+  border: 1px solid rgba(22, 42, 109, 0.1);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+}
+
+.hero-card {
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #ff6ba9;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: clamp(30px, 5vw, 56px);
+  line-height: 1;
+}
+
+.subtitle {
+  margin-bottom: 0;
+  color: #ffebfc;
+  max-width: 720px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 680px) minmax(280px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.board-wrap {
+  padding: 18px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 5px solid rgba(255, 2, 213, 0.16);
+}
+
+.square {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border: 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  cursor: pointer;
+  transition:
+    transform 0.08s ease,
+    filter 0.12s ease,
+    outline 0.12s ease;
+}
+
+.square:hover {
+  filter: brightness(1.12);
+}
+
+.square:active {
+  transform: scale(0.98);
+}
+
+.square[draggable="true"] {
+  cursor: grab;
+}
+
+.square[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.square.locked {
+  cursor: not-allowed;
+}
+
+.square.locked .piece {
+  opacity: 0.75;
+}
+
+.light {
+  background: #f0d9b5;
+}
+
+.dark {
+  background: #b58863;
+}
+
+.selected {
+  outline: 4px solid rgba(0, 0, 0, 0.9);
+  outline-offset: -4px;
+}
+
+.legal::after {
+  content: "";
+  position: absolute;
+  width: 28%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.28);
+}
+
+.legal.capture::after {
+  width: 78%;
+  background: transparent;
+  border: 5px solid rgba(20, 20, 20, 0.28);
+}
+
+.piece {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(28px, 7vw, 64px);
+  color: #111827;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.35);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.coord {
+  position: absolute;
+  left: 5px;
+  bottom: 4px;
+  font-size: clamp(7px, 1.5vw, 11px);
+  font-weight: 700;
+  color: rgba(17, 24, 39, 0.52);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.panel {
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+}
+
+.status-box,
+.info-box {
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.status-box h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.status-box p,
+.moves {
+  color: #d4d4d8;
+  margin-bottom: 0;
+}
+
+.info-box h3 {
+  margin-bottom: 10px;
+  color: #ff8fbd;
+}
+
+.info-box strong {
+  font-weight: 700;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button-row button {
+  flex: 1;
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: white;
+  cursor: pointer;
+  background: #e91e62;
+  font-weight: 800;
+}
+
+.button-row button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+code {
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+  color: #f4f4f5;
+}
+
+.moves {
+  line-height: 1.7;
+}
+
+.move-counter {
+  margin-top: 10px;
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+/* Promotion popup */
+
+.promotion-backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 50;
+}
+
+.promotion-card {
+  width: min(360px, calc(100vw - 32px));
+  padding: 22px;
+  border-radius: 20px;
+  background: rgba(22, 22, 28, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.promotion-card h3 {
+  margin: 0 0 16px;
+}
+
+.promotion-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.promotion-options button,
+.promotion-cancel {
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 16px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.promotion-options button:hover,
+.promotion-cancel:hover {
+  filter: brightness(1.18);
+}
+
+.promotion-cancel {
+  width: 100%;
+  margin-top: 12px;
+  opacity: 0.8;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Phone */
+
+@media (max-width: 600px) {
+  .app-shell {
+    width: min(100vw - 16px, 100%);
+    padding: 12px 0 24px;
+  }
+
+  .hero-card {
+    padding: 18px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 10vw, 42px);
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .board-wrap {
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .board {
+    border-radius: 14px;
+    border-width: 3px;
+  }
+
+  .coord {
+    left: 3px;
+    bottom: 2px;
+    font-size: 7px;
+    opacity: 0.45;
+  }
+
+  .piece {
+    font-size: clamp(26px, 10vw, 42px);
+  }
+
+  .panel {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .status-box,
+  .info-box {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .status-box h2 {
+    font-size: 18px;
+  }
+
+  .button-row {
+    gap: 8px;
+  }
+
+  .button-row button {
+    padding: 10px 11px;
+    font-size: 13px;
+  }
+
+  .moves {
+    font-size: 12px;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+
+  code {
+    font-size: 10px;
+    word-break: break-all;
+  }
+}
+
+/* Very small phones */
+
+@media (max-width: 480px) {
+  .coord {
+    display: none;
+  }
+}
