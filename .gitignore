@@ -8,6 +8,7 @@ build/
 */dist/
 */build/
 
+.gitignore
 # env files
 .env
 .env.local
