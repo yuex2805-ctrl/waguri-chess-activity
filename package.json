@@ -1,0 +1,22 @@
+{
+  "name": "waguri-chess-activity-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@discord/embedded-app-sdk": "^2.5.0",
+    "@vitejs/plugin-react": "latest",
+    "chess.js": "latest",
+    "html2canvas": "^1.4.1",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "^7.17.0",
+    "stockfish.wasm": "^0.10.0",
+    "vite": "latest"
+  }
+}
