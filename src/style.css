@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Modernline";
+  src: url("./assests/fonts/Modernline.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system,
@@ -43,15 +51,6 @@ button {
   margin-bottom: 20px;
 }
 
-.eyebrow {
-  margin: 0 0 8px;
-  color: #ff6ba9;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 800;
-}
-
 h1,
 h2,
 h3,
@@ -65,11 +64,68 @@ h1 {
   line-height: 1;
 }
 
-.subtitle {
-  margin-bottom: 0;
-  color: #ffebfc;
-  max-width: 720px;
+/* Hero + Home button */
+
+.mobile-home-wrap {
+  display: none;
 }
+
+.hero-top {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) 78px;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero-spacer {
+  width: 78px;
+  height: 46px;
+}
+
+.hero-title-wrap {
+  min-width: 0;
+  text-align: center;
+}
+
+.chess-title {
+  margin: 0;
+  font-family: "Modernline", cursive;
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  text-align: center;
+  line-height: 1;
+}
+.home-button {
+  min-width: 78px;
+  height: 46px;
+  padding: 0 18px;
+  text-decoration: none;
+  border-radius: 999px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-weight: 800;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktop-home-button {
+  justify-self: end;
+}
+
+.home-button:hover {
+  transform: translateY(-2px);
+  background: rgba(233, 30, 99, 0.3);
+}
+
+/* Main layout */
 
 .layout {
   display: grid;
@@ -185,6 +241,8 @@ h1 {
   pointer-events: none;
   z-index: 3;
 }
+
+/* Side panel */
 
 .panel {
   padding: 20px;
@@ -312,92 +370,7 @@ code {
   opacity: 0.8;
 }
 
-/* Tablet */
-
-@media (max-width: 900px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Phone */
-
-@media (max-width: 600px) {
-  .app-shell {
-    width: min(100vw - 16px, 100%);
-    padding: 12px 0 24px;
-  }
-
-  .hero-card {
-    padding: 18px;
-    margin-bottom: 14px;
-    border-radius: 18px;
-  }
-
-  h1 {
-    font-size: clamp(28px, 10vw, 42px);
-  }
-
-  .subtitle {
-    font-size: 14px;
-  }
-
-  .board-wrap {
-    padding: 8px;
-    border-radius: 18px;
-  }
-
-  .board {
-    border-radius: 14px;
-    border-width: 3px;
-  }
-
-  .coord {
-    left: 3px;
-    bottom: 2px;
-    font-size: 7px;
-    opacity: 0.45;
-  }
-
-  .piece {
-    font-size: clamp(26px, 10vw, 42px);
-  }
-
-  .panel {
-    padding: 14px;
-    border-radius: 18px;
-  }
-
-  .status-box,
-  .info-box {
-    padding: 14px;
-    border-radius: 14px;
-  }
-
-  .status-box h2 {
-    font-size: 18px;
-  }
-
-  .button-row {
-    gap: 8px;
-  }
-
-  .button-row button {
-    padding: 10px 11px;
-    font-size: 13px;
-  }
-
-  .moves {
-    font-size: 12px;
-    line-height: 1.5;
-    word-break: break-word;
-  }
-
-  code {
-    font-size: 10px;
-    word-break: break-all;
-  }
-}
+/* Home page */
 
 .home-page {
   min-height: 100vh;
@@ -455,38 +428,113 @@ code {
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-.hero-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
+/* Tablet */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
 }
 
-.home-button {
-  flex-shrink: 0;
-  text-decoration: none;
-  padding: 11px 18px;
-  border-radius: 999px;
-  font-weight: 800;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
+/* Phone */
 
-.home-button:hover {
-  transform: translateY(-2px);
-  background: rgba(233, 30, 99, 0.3);
-}
-
-@media (max-width: 640px) {
-  .hero-top {
-    flex-direction: column;
+@media (max-width: 600px) {
+  .app-shell {
+    width: min(100vw - 16px, 100%);
+    padding: 12px 0 24px;
   }
 
-  .home-button {
-    width: 100%;
+  .mobile-home-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .desktop-home-button,
+  .hero-spacer {
+    display: none;
+  }
+
+  .hero-card {
+    padding: 18px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+  }
+
+  .hero-top {
+    display: block;
+  }
+
+  .hero-title-wrap {
     text-align: center;
+  }
+
+.chess-title {
+  font-size: clamp(1.8rem, 11vw, 9rem);
+}
+
+  .board-wrap {
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .board {
+    border-radius: 14px;
+    border-width: 3px;
+  }
+
+  .coord {
+    left: 3px;
+    bottom: 2px;
+    font-size: 7px;
+    opacity: 0.45;
+  }
+
+  .piece {
+    font-size: clamp(26px, 10vw, 42px);
+  }
+
+  .panel {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .status-box,
+  .info-box {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .status-box h2 {
+    font-size: 18px;
+  }
+
+  .button-row {
+    gap: 8px;
+  }
+
+  .button-row button {
+    padding: 10px 11px;
+    font-size: 13px;
+  }
+
+  .moves {
+    font-size: 12px;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+
+  code {
+    font-size: 10px;
+    word-break: break-all;
+  }
+
+  .home-card {
+    padding: 28px 20px;
+  }
+
+  .home-card p {
+    font-size: 0.96rem;
   }
 }
 

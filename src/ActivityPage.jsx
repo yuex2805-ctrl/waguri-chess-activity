@@ -117,29 +117,12 @@ export default function ActivityPage() {
     const sideToMove = game.turn() === "w" ? "White" : "Black";
     const winner = game.turn() === "w" ? "Black" : "White";
 
-    if (game.isCheckmate()) {
-      return `${winner} wins by checkmate.`;
-    }
-
-    if (game.isStalemate()) {
-      return "Draw by stalemate.";
-    }
-
-    if (game.isThreefoldRepetition()) {
-      return "Draw by threefold repetition.";
-    }
-
-    if (game.isInsufficientMaterial()) {
-      return "Draw by insufficient material.";
-    }
-
-    if (game.isDraw()) {
-      return "Draw by 50-move rule or another draw rule.";
-    }
-
-    if (game.isCheck()) {
-      return `${sideToMove} to move — check.`;
-    }
+    if (game.isCheckmate()) return `${winner} wins by checkmate.`;
+    if (game.isStalemate()) return "Draw by stalemate.";
+    if (game.isThreefoldRepetition()) return "Draw by threefold repetition.";
+    if (game.isInsufficientMaterial()) return "Draw by insufficient material.";
+    if (game.isDraw()) return "Draw by 50-move rule or another draw rule.";
+    if (game.isCheck()) return `${sideToMove} to move — check.`;
 
     return `${sideToMove} to move.`;
   }
@@ -228,7 +211,6 @@ export default function ActivityPage() {
 
   function choosePromotion(piece) {
     if (!pendingPromotion) return;
-
     completeMove(pendingPromotion.from, pendingPromotion.to, piece);
   }
 
@@ -422,21 +404,30 @@ export default function ActivityPage() {
         </div>
       )}
 
-     <section className="hero-card">
-  <div className="hero-top">
-    <div>
-      <p className="eyebrow">Waguri Chess Lab</p>
-      <h1>Discord Chess Activity MVP</h1>
-      <p className="subtitle">
-        Click or drag a piece. Legal moves only — powered by chess.js.
-      </p>
-    </div>
+      <div className="mobile-home-wrap">
+        <Link to="/" className="home-button" aria-label="Go to home" title="Home">
+          Home
+        </Link>
+      </div>
 
-  <Link to="/" className="home-button">
-      Home
-    </Link>
-  </div>
-</section>
+      <section className="hero-card">
+        <div className="hero-top">
+          <div className="hero-spacer" />
+
+          <div className="hero-title-wrap">
+            <h1 className="chess-title">Chess Activity</h1>
+          </div>
+
+          <Link
+            to="/"
+            className="home-button desktop-home-button"
+            aria-label="Go to home"
+            title="Home"
+          >
+            Home
+          </Link>
+        </div>
+      </section>
 
       <section className="layout">
         <div className="board-wrap">
